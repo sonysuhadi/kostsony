@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Info Kost - Detail Kost</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #3f51b5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #303f9f;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .kost-detail {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .kost-detail .image {
+      width: 50%;
+      padding-right: 20px;
+    }
+    .kost-detail .image img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .kost-detail .info {
+      width: 50%;
+    }
+    .kost-detail .info h2 {
+      margin-top: 0;
+    }
+    .kost-detail .info p {
+      color: #555;
+    }
+    .kost-detail .info .facilities {
+      margin-top: 20px;
+    }
+    .kost-detail .info .facilities ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .kost-detail .info .facilities li {
+      background-color: #eeeeee;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    .kost-detail .info .contact {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>SimpelKost</h1>
+  <p>Detail Kost Mahasiswa</p>
+</header>
+
+<nav>
+  <a href="index.html">login</a>
+  <a href="beranda.html">Beranda</a>
+  <a href="daftar-kost.html">Daftar Kost</a>
+  <a href="daftarkan-kost.html">Daftarkan Kost</a>
+  <a href="tentang.html">Tentang</a>
+</nav>
+
+<div class="kost-detail">
+  <div class="image">
+      <img src="https://www.ascomaxx.com/uploads/large/40b47fcb9ce5f0eda6c1c710398c0273.jpg" alt="Kost Image">
+  </div>
+  <div class="info">
+    <h2>pavilliun</h2>
+    <p><strong>Lokasi:</strong> Dekat kampus Gunadarma F2</p>
+    <p><strong>Harga:</strong> Rp 700.000 / bulan</p>
+    <p><strong>Deskripsi:</strong> Kost yang nyaman dan aman, cocok untuk mahasiswa. Fasilitas lengkap dan lokasi strategis, dekat dengan transportasi umum.</p>
+    
+    <div class="facilities">
+      <h3>Fasilitas:</h3>
+      <ul>
+        <li>Tempat tidur</li>
+        <li>Meja dan kursi belajar</li>
+        <li>Wi-Fi gratis</li>
+        <li>Dapur bersama</li>
+        <li>Kamar mandi dalam</li>
+      </ul>
+    </div>
+    
+    <div class="contact">
+      <h3>Hubungi Pemilik Kost:</h3>
+      <p>Email: pemilik@kostmawarputih.com</p>
+      <p>Telp/WhatsApp: 0812-3456-7890</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Bot Kost</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 1em; }
+    #chat-box { border: 1px solid #ccc; padding: 1em; height: 300px; overflow-y: scroll; margin-bottom: 1em; background: #f9f9f9; }
+    .message { margin: 0.5em 0; }
+    .user { text-align: right; color: blue; }
+    .bot { text-align: left; color: green; }
+  </style>
+</head>
+

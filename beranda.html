@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INFO KOST - Cari Kost Mahasiswa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #3f51b5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #303f9f;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1597168279957-d5196aa2671d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      background-size: cover;
+      height: 300px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    .hero h1 {
+      font-size: 36px;
+    }
+    .search-section {
+      padding: 20px;
+      text-align: center;
+    }
+    .search-section input {
+      padding: 10px;
+      width: 60%;
+      max-width: 400px;
+      margin-right: 10px;
+    }
+    .search-section button {
+      padding: 10px 20px;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .kost-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .kost-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 280px;
+      overflow: hidden;
+    }
+    .kost-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .kost-card .info {
+      padding: 15px;
+    }
+    .kost-card .info h3 {
+      margin: 0;
+    }
+    .kost-card .info p {
+      margin: 5px 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>INFO KOST</h1>
+  <p>Cari Kost Mahasiswa dengan Mudah dan Cepat</p>
+</header>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="daftar-kost.html">Daftar Kost</a>
+  <a href="daftarkan-kost.html">Daftarkan Kost</a>
+  <a href="tentang.html">Tentang</a>
+</nav>
+
+<div class="hero">
+  <h1>Temukan Kost Nyaman di Sekitar Kampusmu</h1>
+</div>
+
+<div class="search-section">
+  <input type="text" id="searchInput" placeholder="Cari berdasarkan lokasi...">
+  <button onclick="searchKost()">Cari</button>
+</div>
+
+<div class="kost-list" id="kostList">
+  <!-- Kost cards will be generated here -->
+</div>
+
+<script>
+  const kostData = [
+    {
+      name: "Kost Mawar Putih",
+      location: "Dekat Kampus A",
+      price: "Rp 700.000 / bulan",
+      img: "https://www.ascomaxx.com/uploads/large/40b47fcb9ce5f0eda6c1c710398c0273.jpg",
+      detailPage: "detail-kost.html?id=1"
+    },
+    {
+      name: "Kost Sakura",
+      location: "Jalan Melati",
+      price: "Rp 850.000 / bulan",
+      img: "https://source.unsplash.com/400x300/?bedroom",
+      detailPage: "detail-kost.html?id=2"
+    },
+    {
+      name: "Kost Hijau Asri",
+      location: "Dekat Kampus B",
+      price: "Rp 650.000 / bulan",
+      img: "https://source.unsplash.com/400x300/?apartment",
+      detailPage: "detail-kost.html?id=3"
+    }
+  ];
+
+  function displayKost(data) {
+    const list = document.getElementById("kostList");
+    list.innerHTML = "";
+    data.forEach(kost => {
+      list.innerHTML += `
+        <div class="kost-card">
+          <img src="${kost.img}" alt="${kost.name}">
+          <div class="info">
+            <h3>${kost.name}</h3>
+            <p>${kost.location}</p>
+            <p><strong>${kost.price}</strong></p>
+            <a href="${kost.detailPage}">Lihat Detail</a>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function searchKost() {
+    const keyword = document.getElementById("searchInput").value.toLowerCase();
+    const filtered = kostData.filter(k => k.location.toLowerCase().includes(keyword));
+    displayKost(filtered);
+  }
+
+  // Tampilkan semua data saat pertama kali
+  displayKost(kostData);
+</script>
+
+</body>
+</html>
+
+<div id="dataOrder"></div>
+
+<script>
+  function loadOrders() {
+    fetch('http://localhost:5000/api/orders')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("dataOrder");
+        container.innerHTML = "<h3>Pesanan:</h3>";
+        data.forEach(order => {
+          const el = document.createElement("p");
+          el.textContent = `${order.nama} pesan ${order.kost} pada ${new Date(order.tanggal).toLocaleDateString()}`;
+          container.appendChild(el);
+        });
+      });
+  }
+
+  // panggil saat page dimuat
+  window.onload = loadOrders;
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SimpelKost</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Konten lainnya -->
+
+  <!-- Footer -->
+  <footer class="bg-white text-center py-10 text-gray-700">
+    <p class="text-lg mb-4">Thanks for visiting</p>
+
+    <div class="flex justify-center space-x-6 text-teal-700 text-2xl mb-6">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-dribbble"></i></a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm max-w-4xl mx-auto text-left">
+      <div>
+        <h3 class="font-bold mb-2">About Us</h3>
+        <ul class="space-y-1">
+          <li><a href="#">Company History</a></li>
+          <li><a href="#">Meet the Team</a></li>
+          <li><a href="#">Employee Handbook</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold mb-2">Our Services</h3>
+        <ul class="space-y-1">
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">Web Design</a></li>
+          <li><a href="#">Marketing</a></li>
+          <li><a href="#">Google Ads</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold mb-2">Helpful Links</h3>
+        <ul class="space-y-1">
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Support</a></li>
+          <li class="flex items-center">
+            <a href="#">Live Chat</a>
+            <span class="ml-1 w-2 h-2 bg-teal-500 rounded-full animate-pulse"></span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold mb-2">Contact Us</h3>
+        <!-- Tambahkan info kontak jika perlu -->
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

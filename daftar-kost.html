@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Info Kost - Daftar Kost Mahasiswa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #3f51b5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #303f9f;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .kost-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .kost-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 280px;
+      overflow: hidden;
+    }
+    .kost-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .kost-card .info {
+      padding: 15px;
+    }
+    .kost-card .info h3 {
+      margin: 0;
+    }
+    .kost-card .info p {
+      margin: 5px 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>SimpelKost</h1>
+  <p>Daftar Kost Mahasiswa yang Tersedia</p>
+</header>
+
+<nav>
+  <a href="index.html">login</a>
+  <a href="beranda.html">Beranda</a>
+  <a href="daftar-kost.html">Daftar Kost</a>
+  <a href="daftarkan-kost.html">Daftarkan Kost</a>
+  <a href="tentang.html">Tentang</a>
+</nav>
+
+<div class="kost-list" id="kostList">
+  <!-- Kost cards will be generated here -->
+</div>
+
+<script>
+  const kostData = [
+    {
+      name: "Kost Mawar Putih",
+      location: "Dekat Kampus A",
+      price: "Rp 700.000 / bulan",
+      img: "https://www.ascomaxx.com/uploads/large/40b47fcb9ce5f0eda6c1c710398c0273.jpg",
+      detailPage: "detail-kost.html?id=1"
+    },
+    {
+      name: "Kost Sakura",
+      location: "Jalan Melati",
+      price: "Rp 850.000 / bulan",
+      img: "https://source.unsplash.com/400x300/?bedroom",
+      detailPage: "detail-kost.html?id=2"
+    },
+    {
+      name: "Kost Hijau Asri",
+      location: "Dekat Kampus B",
+      price: "Rp 650.000 / bulan",
+      img: "https://source.unsplash.com/400x300/?apartment",
+      detailPage: "detail-kost.html?id=3"
+    }
+  ];
+
+  function displayKost(data) {
+    const list = document.getElementById("kostList");
+    list.innerHTML = "";
+    data.forEach(kost => {
+      list.innerHTML += `
+        <div class="kost-card">
+          <img src="${kost.img}" alt="${kost.name}">
+          <div class="info">
+            <h3>${kost.name}</h3>
+            <p>${kost.location}</p>
+            <p><strong>${kost.price}</strong></p>
+            <a href="${kost.detailPage}">Lihat Detail</a>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // Tampilkan semua data kost
+  displayKost(kostData);
+</script>
+
+</body>
+</html>

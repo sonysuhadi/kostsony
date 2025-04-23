@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Pemilik Kos</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-container { display: none; }
+    .form-container.active { display: block; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Login</a>
+    <a href="beranda.html">Beranda</a>
+    <a href="daftar-kost.html">Daftar Kost</a>
+    <a href="daftarkan-kost.html">Daftarkan Kost</a>
+    <a href="tentang.html">Tentang</a>
+  </nav>
+
+  <div class="login-container">
+    <!-- Form Login -->
+    <div id="loginForm" class="form-container active">
+      <h2>Login Pemilik Kos</h2>
+      <input type="text" id="login-phone" placeholder="Nomor Handphone" />
+      <input type="password" id="login-password" placeholder="Masukkan password" />
+      <button onclick="login()">Login</button>
+      <p>Belum punya akun? <a href="#" onclick="showRegister()">Daftar Sekarang</a></p>
+      <p><a href="#">Lupa password?</a></p>
+    </div>
+
+    <!-- Form Daftar -->
+    <div id="registerForm" class="form-container">
+      <h2>Daftar Pemilik Kos</h2>
+      <input type="text" id="register-name" placeholder="Nama Lengkap" />
+      <input type="text" id="register-phone" placeholder="Nomor Handphone" />
+      <input type="email" id="register-email" placeholder="Email" />
+      <input type="password" id="register-password" placeholder="Buat Password" />
+      <button onclick="register()">Daftar</button>
+      <p>Sudah punya akun? <a href="#" onclick="showLogin()">Login di sini</a></p>
+    </div>
+  </div>
+
+  <script>
+    function showRegister() {
+      document.getElementById('loginForm').classList.remove('active');
+      document.getElementById('registerForm').classList.add('active');
+    }
+
+    function showLogin() {
+      document.getElementById('registerForm').classList.remove('active');
+      document.getElementById('loginForm').classList.add('active');
+    }
+
+    function login() {
+      const phone = document.getElementById('login-phone').value;
+      const password = document.getElementById('login-password').value;
+      // TODO: Validasi dan kirim ke backend
+      alert(`Login dengan No HP: ${phone}`);
+    }
+
+    function register() {
+      const name = document.getElementById('register-name').value;
+      const phone = document.getElementById('register-phone').value;
+      const email = document.getElementById('register-email').value;
+      const password = document.getElementById('register-password').value;
+      // TODO: Validasi dan kirim ke backend
+      alert(`Daftar akun untuk: ${name}`);
+    }
+  </script>
+
+</body>
+</html>
